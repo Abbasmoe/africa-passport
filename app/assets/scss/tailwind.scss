@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Writing Custom Styles Tailwind CSS
+// https://tailwindcss.com/docs/adding-custom-styles
+
+// The utilities layer is for small, single-purpose classes that should always take precedence over any other styles.
+@layer utilities {
+  // Hide scrollbar browser compatibility
+  // https://github.com/adoxography/tailwind-scrollbar/blob/main/src/utilities.js
+  // https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Scrollbars#browser_compatibility
+  .hide-scrollbar::-webkit-scrollbar {
+    @apply hidden;
+  }
+  .hide-scrollbar {
+    scrollbar-width: none;
+  }
+}
+
+// The base layer is for things like reset rules or default styles applied to plain HTML elements.
+@layer base {
+  body {
+    @apply bg-gray-900 text-slate-200 font-body hide-scrollbar scroll-smooth;
+  }
+  h1 {
+    @apply text-3xl;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  h3 {
+    @apply text-xl;
+  }
+
+  h4 {
+    @apply text-base;
+  }
+  h5 {
+    @apply text-sm;
+  }
+  h6 {
+    @apply text-xs;
+  }
+}
