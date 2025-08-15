@@ -175,10 +175,10 @@ const generatePass = (event?: KeyboardEvent | Event) => {
   ctx.fillText("PASSPORT", canvas.width / 2, 150);
 
   // Draw slogan if available
-  if (generatedSlogan) {
+  if (generatedSlogan.value) {
     ctx.font = "italic 28px Arial";
     ctx.fillStyle = "white";
-    ctx.fillText(`"${generatedSlogan}"`, canvas.width / 2, 730);
+    ctx.fillText(`"${generatedSlogan.value}"`, canvas.width / 2, 730);
   }
 
   // Draw name

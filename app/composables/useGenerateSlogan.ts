@@ -17,7 +17,7 @@ export interface TGeneratedSloganResponseError {
 }
 
 export const useGenerateSlogan = () => {
-  let generatedSlogan = "";
+  const generatedSlogan = ref("");
   const sloganDisplay = ref("Or generate a slogan...");
   const generateSloganBtn = ref("✨ Generate Slogan");
 
@@ -42,13 +42,14 @@ export const useGenerateSlogan = () => {
           response.candidates[0]?.content.parts &&
           response.candidates[0]?.content.parts.length > 0
         ) {
-          generatedSlogan =
+          const generatedSloganResponse =
             response.candidates?.[0]?.content?.parts?.[0]?.text?.replace(
               /^["']|["']$/g,
               ""
             ) ?? "Unity in Diversity";
 
-          sloganDisplay.value = generatedSlogan;
+          generatedSlogan.value = generatedSloganResponse;
+          sloganDisplay.value = generatedSloganResponse;
         } else {
           sloganDisplay.value = "Slogan could not be generated.";
         }
