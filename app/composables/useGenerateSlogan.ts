@@ -20,17 +20,10 @@ export const useGenerateSlogan = () => {
   let generatedSlogan = "";
   const sloganDisplay = ref("Or generate a slogan...");
   const generateSloganBtn = ref("✨ Generate Slogan");
-  const runtimeConfig = useRuntimeConfig();
 
   const generateSlogan = async () => {
     generateSloganBtn.value = "Generating...";
     sloganDisplay.value = "Creating an inspirational slogan...";
-
-    const prompt =
-      "Generate a short, inspirational slogan for a passport of a united African nation. Respond with only the slogan, no extra explanations or quotation marks.";
-    const chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
-    const payload = { contents: chatHistory };
-    const apiUrl = `${runtimeConfig.public.apiBase}?key=${runtimeConfig.apiSecret}`;
 
     let retries = 0;
     const maxRetries = 5;
@@ -38,11 +31,9 @@ export const useGenerateSlogan = () => {
 
     while (retries < maxRetries) {
       try {
-        const response = await $fetch<TGeneratedSloganResponse>(apiUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
+        const response = await $fetch<TGeneratedSloganResponse>(
+          "/api/generate-slogan"
+        );
 
         if (
           response.candidates &&
